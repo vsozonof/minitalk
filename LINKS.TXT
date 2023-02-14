@@ -1,0 +1,3 @@
+https://codereview.stackexchange.com/questions/280715/client-server-communications-through-unix-signals-in-c
+https://stackoverflow.com/questions/69947118/server-receiving-and-showing-string-from-client-using-signals-sigusr1-and-sigusr
+https://stackoverflow.com/questions/67985972/how-can-you-send-a-string-given-has-argument-to-a-program-to-another-program-usi

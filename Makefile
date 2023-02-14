@@ -6,46 +6,57 @@
 #    By: vsozonof <vsozonof@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/01 08:37:07 by vsozonof          #+#    #+#              #
-#    Updated: 2023/02/01 08:37:42 by vsozonof         ###   ########.fr        #
+#    Updated: 2023/02/14 18:22:16 by vsozonof         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libftprintf.a
-
-CC = gcc
+# Executable files name
+SERV_EXEC = server
+CLIENT_EXEC = client
+	
+CC = cc
 CFLAGS = -Wall -Wextra -Werror
-AR = ar crs
 RM = rm -f
-NM = norminette
 
-HEADER = 
+# Colors
+COLOUR_GREEN =\033[0;32m
+COLOUR_END =\033[0m
 
-SRCS = 	
+# Source files
+HEADER = includes/minitalk.h \
+
+SRCS_CLIENT = srcs/client.c \
+			  srcs/arg_utils.c \
+
+SRCS_SERVER = srcs/server.c \
+
+SRCS_LIBFT = libft/libftprintf.a \
 		
-OBJS = $(SRCS:.c=.o)
+all: init $(SERV_EXEC) $(CLIENT_EXEC)
 
-%.o: %.c
-	$(CC) $(CFLAGS) -o $@ -c $<
+init:
+		@echo "$(COLOUR_GREEN)****** STARTING COMPILATION ******$(COLOUR_END)"
+		make all -C ./libft
 
-$(NAME): $(OBJS) $(HEADER)
-		$(AR) $@ $^
+$(SERV_EXEC): $(SRCS_SERVER) $(HEADER)
+	@echo "$(COLOUR_GREEN)******    CREATING CLIENT    ******$(COLOUR_END)"
+	$(CC) $(CFLAGS) $(SRCS_SERVER) $(SRCS_LIBFT) -o $(SERV_EXEC)
 
-norme: $(SRCS) $(HEADER)
-		$(NM) $@ $^
+$(CLIENT_EXEC): $(SRCS_CLIENT) $(HEADER)
+	@echo "$(COLOUR_GREEN)******    CREATING SERVER    ******$(COLOUR_END)"
+	$(CC) $(CFLAGS) $(SRCS_CLIENT) $(SRCS_LIBFT) -o $(CLIENT_EXEC)
 
-all: $(NAME)
-
-git: norme
-		git add .
-		git commit -m "last commit"
-		git push
-     
 clean:
-		$(RM) $(OBJS) $(BONUS_OBJS)
+		@echo "$(COLOUR_GREEN)****** INITIATING CLEAN  ******$(COLOUR_END)"
+		make clean -C ./libft
+		@echo "$(COLOUR_GREEN)******   CLEAN COMPLETE  ******$(COLOUR_END)"
 
-fclean: clean
-		$(RM) $(NAME)
-
+fclean: 
+		@echo "$(COLOUR_GREEN)****** INITIATING FCLEAN ******$(COLOUR_END)"
+		make fclean -C ./libft
+		$(RM) $(SERV_EXEC) $(CLIENT_EXEC)
+		@echo "$(COLOUR_GREEN)******  FCLEAN COMPLETE  ******$(COLOUR_END)"
+		
 re: fclean all
 
-.PHONY: all clean fclean re norme bonus
+.PHONY: all clean fclean re init
