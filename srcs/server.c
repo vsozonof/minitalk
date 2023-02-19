@@ -6,7 +6,7 @@
 /*   By: vsozonof <vsozonof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 08:39:51 by vsozonof          #+#    #+#             */
-/*   Updated: 2023/02/14 19:30:53 by vsozonof         ###   ########.fr       */
+/*   Updated: 2023/02/17 15:39:30 by vsozonof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	sig_handler(int sig)
 	(void)sig;
 }
 
-int	main(void)
+void	ft_init_server(void)
 {
 	struct sigaction	sa;
 
@@ -28,7 +28,8 @@ int	main(void)
 	sa.sa_handler = sig_handler;
 	sa.sa_flags = 0;
 	sigemptyset(&sa.sa_mask);
-	if (sigaction(SIGUSR1, &sa, NULL) == -1 || sigaction(SIGUSR2, &sa, NULL) == -1)
+	if (sigaction(SIGUSR1, &sa, NULL) == -1
+		|| sigaction(SIGUSR2, &sa, NULL) == -1)
 		exit(1);
 	while (1)
 	{
@@ -36,4 +37,17 @@ int	main(void)
 		sleep(5);
 	}
 	ft_printf("%i - DONE", g_signal);
+}
+
+int	main(void)
+{
+	ft_printf("\033[0;35m");
+	ft_printf("███╗░░░███╗██╗███╗░░██╗██╗████████╗░█████╗░██╗░░░░░██╗░░██╗\n");
+	ft_printf("████╗░████║██║████╗░██║██║╚══██╔══╝██╔══██╗██║░░░░░██║░██╔╝\n");
+	ft_printf("██╔████╔██║██║██╔██╗██║██║░░░██║░░░███████║██║░░░░░█████═╝\n");
+	ft_printf("██║╚██╔╝██║██║██║╚████║██║░░░██║░░░██╔══██║██║░░░░░██╔═██╗░\n");
+	ft_printf("██║░╚═╝░██║██║██║░╚███║██║░░░██║░░░██║░░██║███████╗██║░╚██╗\n");
+	ft_printf("╚═╝░░░░░╚═╝╚═╝╚═╝░░╚══╝╚═╝░░░╚═╝░░░╚═╝░░╚═╝╚══════╝╚═╝░░╚═╝\n\n");
+	ft_printf("\033[0;37m");
+	ft_init_server();
 }

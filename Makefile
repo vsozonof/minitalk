@@ -6,7 +6,7 @@
 #    By: vsozonof <vsozonof@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/01 08:37:07 by vsozonof          #+#    #+#              #
-#    Updated: 2023/02/14 18:22:16 by vsozonof         ###   ########.fr        #
+#    Updated: 2023/02/17 12:40:05 by vsozonof         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ COLOUR_END =\033[0m
 HEADER = includes/minitalk.h \
 
 SRCS_CLIENT = srcs/client.c \
-			  srcs/arg_utils.c \
+			  srcs/arg_handler.c \
 
 SRCS_SERVER = srcs/server.c \
 

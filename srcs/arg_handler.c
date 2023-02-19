@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_arg_handler.c                                   :+:      :+:    :+:   */
+/*   arg_handler.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vsozonof <vsozonof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 18:26:28 by vsozonof          #+#    #+#             */
-/*   Updated: 2023/02/14 18:26:42 by vsozonof         ###   ########.fr       */
+/*   Updated: 2023/02/17 15:31:44 by vsozonof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,27 @@ int	ft_error_handler(char *error)
 {
 	ft_printf("%s\n", error);
 	return (0);
+}
+
+int	ft_overflow_handler(char *str)
+{
+	if (ft_strlen(str) > 10)
+		return (0);
+	else if (ft_strlen(str) == 10 && ft_integer_checker(str) != 1)
+		return (0);
+	return (1);
+}
+
+int	ft_integer_checker(char *str)
+{
+	long	max;
+	long	pid;
+
+	max = INT_MAX;
+	pid = ft_atol(str);
+	if (pid > max)
+		return (0);
+	return (1);
 }
 
 int	ft_isdigit(char *str)
@@ -33,11 +54,11 @@ int	ft_isdigit(char *str)
 	return (1);
 }
 
-int	ft_atoi(const char *str)
+long	ft_atol(const char *str)
 {
-	int	var;
-	int	i;
-	int	sign;
+	long	var;
+	int		i;
+	int		sign;
 
 	i = 0;
 	sign = 1;
