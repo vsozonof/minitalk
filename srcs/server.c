@@ -6,25 +6,26 @@
 /*   By: vsozonof <vsozonof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 08:39:51 by vsozonof          #+#    #+#             */
-/*   Updated: 2023/02/17 15:39:30 by vsozonof         ###   ########.fr       */
+/*   Updated: 2023/02/20 11:11:27 by vsozonof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minitalk.h"
 
-int	g_signal = 0;
 
 void	sig_handler(int sig)
 {
-	g_signal += 1;
-	(void)sig;
+	if (sig == SIGUSR1)
+		ft_printf("SIGUSR1 received	- %i\n", sig);
+	else if (sig == SIGUSR2)
+		ft_printf("SIGUSR2 received - %i\n", sig);
+
 }
 
 void	ft_init_server(void)
 {
 	struct sigaction	sa;
 
-	g_signal = 0;
 	sa.sa_handler = sig_handler;
 	sa.sa_flags = 0;
 	sigemptyset(&sa.sa_mask);
@@ -33,10 +34,9 @@ void	ft_init_server(void)
 		exit(1);
 	while (1)
 	{
-		ft_printf("%i - PID %d: waiting...\n", g_signal, getpid());
+		ft_printf("PID %d: waiting...\n", getpid());
 		sleep(5);
 	}
-	ft_printf("%i - DONE", g_signal);
 }
 
 int	main(void)

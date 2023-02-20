@@ -6,7 +6,7 @@
 #    By: vsozonof <vsozonof@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/01 08:37:07 by vsozonof          #+#    #+#              #
-#    Updated: 2023/02/17 12:40:05 by vsozonof         ###   ########.fr        #
+#    Updated: 2023/02/20 11:32:40 by vsozonof         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ COLOUR_END =\033[0m
 HEADER = includes/minitalk.h \
 
 SRCS_CLIENT = srcs/client.c \
-			  srcs/arg_handler.c \
+			  srcs/pid_handler.c \
 
 SRCS_SERVER = srcs/server.c \
 
@@ -39,11 +39,11 @@ init:
 		make all -C ./libft
 
 $(SERV_EXEC): $(SRCS_SERVER) $(HEADER)
-	@echo "$(COLOUR_GREEN)******    CREATING CLIENT    ******$(COLOUR_END)"
+	@echo "$(COLOUR_GREEN)******    CREATING SERVER    ******$(COLOUR_END)"
 	$(CC) $(CFLAGS) $(SRCS_SERVER) $(SRCS_LIBFT) -o $(SERV_EXEC)
 
 $(CLIENT_EXEC): $(SRCS_CLIENT) $(HEADER)
-	@echo "$(COLOUR_GREEN)******    CREATING SERVER    ******$(COLOUR_END)"
+	@echo "$(COLOUR_GREEN)******    CREATING CLIENT    ******$(COLOUR_END)"
 	$(CC) $(CFLAGS) $(SRCS_CLIENT) $(SRCS_LIBFT) -o $(CLIENT_EXEC)
 
 clean:
