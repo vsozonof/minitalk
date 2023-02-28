@@ -6,25 +6,36 @@
 /*   By: vsozonof <vsozonof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 08:39:51 by vsozonof          #+#    #+#             */
-/*   Updated: 2023/02/27 01:02:31 by vsozonof         ###   ########.fr       */
+/*   Updated: 2023/02/28 08:23:50 by vsozonof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minitalk.h"
 
-sig_atomic_t	g_counter = 0;
-
 void	ft_serv_sig_handler(int sig, siginfo_t *sig_cl, void *context)
 {
+	static unsigned char	c = 0;
+	static int				bit_index = 7;
+
 	(void)context;
 	if (sig == SIGUSR1)
-		g_counter++;
+		c |= (1 << bit_index);
 	else if (sig == SIGUSR2)
+		c &= ~(1u << bit_index);
+	bit_index--;
+	if (bit_index < 0 && c)
 	{
-		write(1, &g_counter, 1);
-		g_counter = 0;
-		usleep(2000);
+		ft_printf("%c", c);
+		c = 0;
+		bit_index = 7;
 	}
+	else if (bit_index < 0 && !(c))
+	{
+		kill(sig_cl->si_pid, SIGUSR2);
+		ft_printf("\n");
+		bit_index = 7;
+		c = 0;
+	}	
 	kill(sig_cl->si_pid, SIGUSR1);
 }
 
@@ -40,7 +51,7 @@ void	ft_init_server(void)
 		exit(1);
 	ft_printf("PID %d: waiting...\n", getpid());
 	while (42)
-		usleep(5);
+		usleep(42000);
 }
 
 int	main(void)
