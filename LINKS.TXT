@@ -1,7 +1,0 @@
-https://codereview.stackexchange.com/questions/280715/client-server-communications-through-unix-signals-in-c
-https://stackoverflow.com/questions/69947118/server-receiving-and-showing-string-from-client-using-signals-sigusr1-and-sigusr
-https://stackoverflow.com/questions/67985972/how-can-you-send-a-string-given-has-argument-to-a-program-to-another-program-usi
-https://www.geeksforgeeks.org/binary-representation-of-a-given-number/
-https://bit-calculator.com/
-https://codereview.stackexchange.com/questions/273109/basic-client-server-model-using-unix-signals?rq=1
-https://stackoverflow.com/questions/69947118/server-receiving-and-showing-string-from-client-using-signals-sigusr1-and-sigusr?rq=1
