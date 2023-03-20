@@ -6,11 +6,13 @@
 /*   By: vsozonof <vsozonof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 08:39:51 by vsozonof          #+#    #+#             */
-/*   Updated: 2023/02/28 08:23:50 by vsozonof         ###   ########.fr       */
+/*   Updated: 2023/03/20 10:48:08 by vsozonof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minitalk.h"
+
+sig_atomic_t	g_sig_serv = 0;
 
 void	ft_serv_sig_handler(int sig, siginfo_t *sig_cl, void *context)
 {
@@ -23,20 +25,27 @@ void	ft_serv_sig_handler(int sig, siginfo_t *sig_cl, void *context)
 	else if (sig == SIGUSR2)
 		c &= ~(1u << bit_index);
 	bit_index--;
-	if (bit_index < 0 && c)
+	if (bit_index < 0)
 	{
-		ft_printf("%c", c);
+		ft_str_creator(bit_index, c, sig_cl);
 		c = 0;
 		bit_index = 7;
 	}
+	kill(sig_cl->si_pid, SIGUSR1);
+}
+
+void	ft_str_creator(int bit_index, unsigned int c, siginfo_t *sig_cl)
+{	
+	static char	*msg;
+	char		*tmp;
+
+	if (bit_index < 0 && c)
+		msg = ft_charjoin(msg, c);
 	else if (bit_index < 0 && !(c))
 	{
 		kill(sig_cl->si_pid, SIGUSR2);
-		ft_printf("\n");
-		bit_index = 7;
-		c = 0;
-	}	
-	kill(sig_cl->si_pid, SIGUSR1);
+		ft_printf("%s\n", msg);
+	}
 }
 
 void	ft_init_server(void)

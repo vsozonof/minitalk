@@ -6,7 +6,7 @@
 #    By: vsozonof <vsozonof@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/01 08:37:07 by vsozonof          #+#    #+#              #
-#    Updated: 2023/02/20 11:32:40 by vsozonof         ###   ########.fr        #
+#    Updated: 2023/03/20 10:26:21 by vsozonof         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ SRCS_CLIENT = srcs/client.c \
 			  srcs/pid_handler.c \
 
 SRCS_SERVER = srcs/server.c \
+			  srcs/string_utils.c \
 
 SRCS_LIBFT = libft/libftprintf.a \
 		

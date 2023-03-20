@@ -6,7 +6,7 @@
 /*   By: vsozonof <vsozonof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 13:40:04 by vsozonof          #+#    #+#             */
-/*   Updated: 2023/02/28 08:32:30 by vsozonof         ###   ########.fr       */
+/*   Updated: 2023/03/20 06:03:05 by vsozonof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	ft_char_handler(int pid, unsigned char c)
 		else
 			kill(pid, SIGUSR2);
 		while (!g_sig_client)
-			pause();
+			usleep(1);
 		bit_index--;
 		bit_cmp >>= 1;
 	}
