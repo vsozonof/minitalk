@@ -6,7 +6,7 @@
 /*   By: vsozonof <vsozonof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 19:29:37 by vsozonof          #+#    #+#             */
-/*   Updated: 2022/12/02 10:39:42 by vsozonof         ###   ########.fr       */
+/*   Updated: 2023/03/23 23:14:12 by vsozonof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,7 @@
 
 void	ft_putstr(char *s)
 {
-	int	i;
-
-	i = -1;
 	if (s == NULL)
 		return (ft_putstr("(null)"));
-	while (s[++i])
-		ft_putchar(s[i]);
+	write(1, s, ft_strlen(s));
 }

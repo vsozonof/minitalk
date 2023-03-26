@@ -6,7 +6,7 @@
 #    By: vsozonof <vsozonof@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/01 08:37:07 by vsozonof          #+#    #+#              #
-#    Updated: 2023/03/20 10:26:21 by vsozonof         ###   ########.fr        #
+#    Updated: 2023/03/24 03:40:04 by vsozonof         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,21 +15,20 @@ SERV_EXEC = server
 CLIENT_EXEC = client
 	
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -Iincludes
 RM = rm -f
 
 # Colors
 COLOUR_GREEN =\033[0;32m
 COLOUR_END =\033[0m
 
-# Source files
-HEADER = includes/minitalk.h \
-
 SRCS_CLIENT = srcs/client.c \
-			  srcs/pid_handler.c \
+			  srcs/pid_utils.c \
+			  srcs/client_utils.c \
 
 SRCS_SERVER = srcs/server.c \
 			  srcs/string_utils.c \
+			  srcs/server_utils.c \
 
 SRCS_LIBFT = libft/libftprintf.a \
 		
