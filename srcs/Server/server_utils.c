@@ -6,7 +6,7 @@
 /*   By: vsozonof <vsozonof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 03:06:42 by vsozonof          #+#    #+#             */
-/*   Updated: 2023/03/27 01:51:15 by vsozonof         ###   ########.fr       */
+/*   Updated: 2023/03/30 21:47:38 by vsozonof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,6 @@ void	ft_serv_sig_handler(int sig, siginfo_t *sig_cl, void *context)
 	static int				bit_index = 7;
 
 	(void)context;
-	if (!ft_status_checker(sig_cl->si_pid))
-	{
-		c = 0;
-		bit_index = 7;
-	}
 	if (sig == SIGUSR1)
 		c |= (1 << bit_index);
 	else if (sig == SIGUSR2)
@@ -82,15 +77,4 @@ void	ft_str_creator(int bit_index, unsigned int c, siginfo_t *sig_cl)
 			exit(1);
 		g_sig_serv = 0;
 	}
-}
-
-int	ft_status_checker(int pid)
-{
-	if ((kill(pid, 0)) == -1)
-	{
-		ft_printf("The connection with the client : %i was lost !", pid);
-		return (0);
-	}
-	else
-		return (1);
 }

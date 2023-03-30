@@ -6,7 +6,7 @@
 /*   By: vsozonof <vsozonof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 08:42:42 by vsozonof          #+#    #+#             */
-/*   Updated: 2023/03/27 01:37:33 by vsozonof         ###   ########.fr       */
+/*   Updated: 2023/03/29 16:32:58 by vsozonof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ void		ft_client_bit_handler(int sig, siginfo_t *sig_info, void *context);
 
 // STARTING THE SERVER
 //---------------------
-
 void		ft_init_server(void);
+
 // -> "PHASE 1" FUNCTIONS - GETTING THE STRING LEN
 //-------------------------------------------------
 void		ft_serv_len_receiver(int sig, siginfo_t *sig_cl, void *context);
